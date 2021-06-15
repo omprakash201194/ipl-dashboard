@@ -6,7 +6,7 @@ export const HomePage = () => {
   const [teams, setTeams] = useState([]);
   useEffect(() => {
     const fetchAllTeams = async () => {
-      const response = await fetch(`http://localhost:8080/team/`);
+      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/team/`);
       const data = await response.json();
       setTeams(data);
     };
@@ -19,7 +19,7 @@ export const HomePage = () => {
         <h1 className="app-name">Omprakash Gautam IPL Dashboard</h1>
       </div>
       <div className="team-grid">
-      {teams.map(team => <TeamTile teamName={team.teamName} />)}
+      {teams.map(team => <TeamTile key = {team.id} teamName={team.teamName} />)}
       </div>
     </div>
   );
